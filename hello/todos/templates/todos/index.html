@@ -1,0 +1,34 @@
+    {% extends "todos/layout.html" %}
+    {% block todos %}
+            <h1>Your Tasks</h1>
+            
+            <table>
+                <caption>Weekly Todos</caption>
+                <tr>
+                    <th>Task</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                </tr>
+            {% for task in tasks %}
+          
+                <tr>
+                    <td>
+                        {{task.task}}
+                    </td>
+                    <td>
+                        {{task.day}}
+                    </td>
+                    <td>
+                        {{task.time}}
+                    </td>
+                </tr>
+            {% empty %}
+               <tr>
+                   <td>
+                       No tasks.
+                   </td>
+               </tr>
+            {% endfor %}
+            </table>
+        <a href="{% url 'todos:add' %}">Add Task</a>
+    {% endblock %}

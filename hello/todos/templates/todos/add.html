@@ -1,0 +1,11 @@
+{% extends "todos/layout.html" %}
+
+    {% block todos %}
+            <h1>Add Your Tasks</h1>
+            <form class="addtask" action="{% url 'todos:add' %}" method="post">
+                {% csrf_token %} <!--must have for cross communications sercurity reasons/ if not csrf middleware in the sitting.py won't allow form submission-->
+             {{ form }} <!---form created and validated in the views.TodosForm-->
+            <input type="submit" value="Submit" />
+            </form>
+           <a href="{% url 'todos:index' %}">View Tasks</a>
+    {% endblock %}
