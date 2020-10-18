@@ -2,7 +2,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from .models import Todos
+from .models import Todos, Person
 # Create your views here.
 
 #create form and validate it 
@@ -31,13 +31,10 @@ def add(request):
             task = form.cleaned_data["task"]
             day  = form.cleaned_data["day"]
             time = form.cleaned_data["time"]
-        
-            task =  {
-                "task": task,
-                "day" : day,
-                "time" : time
-            }
-            request.session["tasks"] += [task]
+            p=Person()
+            p.save()
+            t= Todos(task=task, day=day, time=time, person=p)
+            t.save()
             #after adding a task redirect to the task list page
             return HttpResponseRedirect(reverse("todos:index"))
         else:
@@ -51,6 +48,8 @@ def add(request):
 
 def task_detail( request, pk):
     #pk a must to have abaove
+    #task.persons.all() -> will get all persons related to the task ( persons <- mentioned as related name in the models)
     task= Todos.objects.get(id=pk)
     return render( request, "todos/task_detail.html", {
-        "task": task })
+        "task": task ,
+        })
