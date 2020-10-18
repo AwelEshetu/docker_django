@@ -5,5 +5,6 @@ app_name = "todos"
 
 urlpatterns=[
     path("",views.index , name="index"),
-    path("add", views.add, name="add")
+    path("add", views.add, name="add"),
+    path("<uuid:pk>/", views.task_detail, name="detail")
 ]

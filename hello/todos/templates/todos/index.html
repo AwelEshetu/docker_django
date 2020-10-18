@@ -12,8 +12,9 @@
             {% for task in tasks %}
           
                 <tr>
+                
                     <td>
-                        {{task.task}}
+                        <a href="{% url 'todos:detail' task.id %}">{{task.task}}</a>
                     </td>
                     <td>
                         {{task.day}}

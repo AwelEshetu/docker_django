@@ -2,7 +2,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-
+from .models import Todos
 # Create your views here.
 
 #create form and validate it 
@@ -13,11 +13,12 @@ class TodosForm(forms.Form):
 
 def index(request):
     #check if there is tasks in uses session and create empty list if there is not
+    #"tasks":request.session["tasks"]
     if "tasks" not in request.session:
         request.session["tasks"] = []
 
     return render(request, 'todos/index.html', {
-        "tasks":request.session["tasks"]
+        "tasks": Todos.objects.all()
     })
 
 def add(request):
@@ -47,3 +48,9 @@ def add(request):
     return render(request,'todos/add.html', {
         "form" : TodosForm()
     })
+
+def task_detail( request, pk):
+    #pk a must to have abaove
+    task= Todos.objects.get(id=pk)
+    return render( request, "todos/task_detail.html", {
+        "task": task })
