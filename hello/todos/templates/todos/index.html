@@ -1,35 +1,41 @@
     {% extends "todos/layout.html" %}
+    {% load static i18n %}
     {% block todos %}
             <h1>Your Tasks</h1>
             
-            <table>
-                <caption>Weekly Todos</caption>
-                <tr>
-                    <th>Task</th>
-                    <th>Day</th>
-                    <th>Time</th>
-                </tr>
-            {% for task in tasks %}
-          
-                <tr>
-                
-                    <td>
-                        <a href="{% url 'todos:detail' task.id %}">{{task.task}}</a>
-                    </td>
-                    <td>
-                        {{task.day}}
-                    </td>
-                    <td>
-                        {{task.time}}
-                    </td>
-                </tr>
-            {% empty %}
-               <tr>
-                   <td>
-                       No tasks.
-                   </td>
-               </tr>
-            {% endfor %}
-            </table>
-        <a href="{% url 'todos:add' %}">Add Task</a>
+    <table
+    id="table"
+    data-toggle="table"
+    data-toolbar="#toolbar"
+    data-search="true"
+    data-sort-class="table-active"
+    data-sortable="true">
+    <caption>Weekly Todos</caption>
+    <thead>
+        <tr>
+        <th data-sortable="true">{% trans "Task" %}</th>
+        <th data-sortable="true">{% trans "Day" %}</th>
+        <th data-sortable="true">{% trans "Time" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td> <a href="{% url 'todos:detail' task.id %}">{{task.task}}</a></td>
+            <td> {{ task.day }}</td>
+            <td> {{ task.time }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>
+                No tasks.
+            </td>
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+    </table>
+    <div><a href="{% url 'todos:add' %}">Add Task</a></div> 
     {% endblock %}
+
+    
