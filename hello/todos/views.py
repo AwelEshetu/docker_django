@@ -2,7 +2,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from .models import Todos, Person
+from .models import Todos, Person, EmployeeInfo
 # Create your views here.
 
 #create form and validate it 
@@ -18,7 +18,8 @@ def index(request):
         request.session["tasks"] = []
 
     return render(request, 'todos/index.html', {
-        "tasks": Todos.objects.all()
+        "tasks": Todos.objects.all(),
+        "employees" : EmployeeInfo.objects.all()
     })
 
 def add(request):
@@ -50,6 +51,7 @@ def task_detail( request, pk):
     #pk a must to have abaove
     #task.persons.all() -> will get all persons related to the task ( persons <- mentioned as related name in the models)
     task= Todos.objects.get(id=pk)
+    
     return render( request, "todos/task_detail.html", {
         "task": task ,
         })

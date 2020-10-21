@@ -16,6 +16,10 @@
         <th data-sortable="true">{% trans "Task" %}</th>
         <th data-sortable="true">{% trans "Day" %}</th>
         <th data-sortable="true">{% trans "Time" %}</th>
+        <th data-sortable="true">{% trans "Name" %}</th>
+        <th data-sortable="true">{% trans "Email" %}</th>
+        <th data-sortable="true">{% trans "Title" %}</th>
+        <th data-sortable="true">{% trans "Exprience rief" %}</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +28,10 @@
             <td> <a href="{% url 'todos:detail' task.id %}">{{task.task}}</a></td>
             <td> {{ task.day }}</td>
             <td> {{ task.time }}</td>
+            <td>{{task.person.user.username}}</td>
+            <td> {{task.person.user.email}}</td>
+            <td> {{task.person.title}}</td>
+            <td> {{task.person.brief_exprience}}</td>
         </tr>
         {% empty %}
         <tr>
@@ -35,6 +43,7 @@
         
     </tbody>
     </table>
+   
     <div><a href="{% url 'todos:add' %}">Add Task</a></div> 
     {% endblock %}
 
