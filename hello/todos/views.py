@@ -49,10 +49,10 @@ def add(request):
         "form" : TodosForm()
     })
 
-def task_detail( request, pk):
+def task_detail( request, id):
     #pk a must to have abaove
     #task.persons.all() -> will get all persons related to the task ( persons <- mentioned as related name in the models)
-    task= Todos.objects.get(id=pk)
+    task= Todos.objects.get(id=id)
     
     return render( request, "todos/task_detail.html", {
         "task": task ,
