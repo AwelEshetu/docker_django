@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import Todos, Person, EmployeeInfo
+from django.views.generic import DetailView
+
 # Create your views here.
 
 #create form and validate it 
@@ -55,3 +57,4 @@ def task_detail( request, pk):
     return render( request, "todos/task_detail.html", {
         "task": task ,
         })
+
