@@ -16,39 +16,72 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='EmployeeInfo',
+            name="EmployeeInfo",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('title', models.CharField(blank=True, max_length=100, null=True)),
-                ('brief_exprience', models.TextField(blank=True, max_length=500, null=True)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("title", models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    "brief_exprience",
+                    models.TextField(blank=True, max_length=500, null=True),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='LessID',
+            name="LessID",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=100)),
-                ('age', models.IntegerField()),
-                ('description', models.TextField(blank=True, max_length=300, null=True)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("age", models.IntegerField()),
+                (
+                    "description",
+                    models.TextField(blank=True, max_length=300, null=True),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Person',
+            name="Person",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('firstname', models.CharField(default='awel', max_length=100, null=True)),
-                ('lastname', models.CharField(default='eshetu', max_length=100, null=True)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "firstname",
+                    models.CharField(default="awel", max_length=100, null=True),
+                ),
+                (
+                    "lastname",
+                    models.CharField(default="eshetu", max_length=100, null=True),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Todos',
+            name="Todos",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('task', models.CharField(max_length=100)),
-                ('day', models.CharField(max_length=100)),
-                ('time', models.CharField(max_length=100)),
-                ('person', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='persons', to='todos.employeeinfo')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("task", models.CharField(max_length=100)),
+                ("day", models.CharField(max_length=100)),
+                ("time", models.CharField(max_length=100)),
+                (
+                    "person",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="persons",
+                        to="todos.employeeinfo",
+                    ),
+                ),
             ],
         ),
     ]
