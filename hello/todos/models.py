@@ -34,7 +34,9 @@ class Todos(models.Model):
 
     def __str__(self):
         return f"You have '{self.task}' on '{self.day}' at '{self.time}' assigned to '{self.person}'."
-
+        
+    def calculate_product(self, x, y):
+        return x*y
 
 class LessID(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

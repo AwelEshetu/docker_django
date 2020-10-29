@@ -20,13 +20,16 @@ class TodosListView(ListView):
     model = Todos
     template_name = 'todos/index.html'
     context_object_name = 'tasks'
-
+    
     def get_context_data(self, *kwargs):
         context = super().get_context_data(*kwargs)
         emplyees = EmployeeInfo.objects.all()
         context['employees'] = emplyees
         return context
 
+    def calculate_sum(self, x, y):
+        return x+y
+    
 def add(request):
     # check if the form is has valid data and save it to tasks array, if not send back the add form
     # if request is not post, initialize an empty form
@@ -66,7 +69,8 @@ def task_detail(request, id):
 def cv_to_pdf(request):
     """Generate pdf."""
     # Model data
-
+    print(f'the request object coming is {request}')
+    
     task = {"task": "hello", "day": "monday", "time": "wholeday"}
 
     # Rendered
