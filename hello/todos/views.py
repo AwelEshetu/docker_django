@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import Todos, Person, EmployeeInfo
+from django.contrib.auth.models import User
 from django.views.generic import DetailView, ListView
 # Create your views here.
 from django.http import HttpResponse
@@ -12,6 +13,10 @@ import tempfile
 
 # create form and validate it
 class TodosForm(forms.Form):
+    user = forms.CharField(label='User')
+    email = forms.EmailField(label='Email')
+    title = forms.CharField(label='Title')
+    experience =forms.CharField(widget=forms.Textarea, label='Experience')
     task = forms.CharField(label="Task")
     day = forms.CharField(label="Day")
     time = forms.CharField(label="Time")
@@ -40,7 +45,13 @@ def add(request):
             task = form.cleaned_data["task"]
             day = form.cleaned_data["day"]
             time = form.cleaned_data["time"]
-            p = Person()
+            user = form.cleaned_data['user']
+            email = form.cleaned_data['email']
+            title = form.cleaned_data['title']
+            experience = form.cleaned_data['experience'] # very funny look in the UI
+            u=User(username=user, email=email)
+            u.save()
+            p = EmployeeInfo(user=u, title=title, brief_exprience=experience)
             p.save()
             t = Todos(task=task, day=day, time=time, person=p)
             t.save()
