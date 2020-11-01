@@ -1,6 +1,7 @@
 from todos.models import Todos, EmployeeInfo
+from django.contrib.auth.models import User
 from rest_framework import viewsets, permissions
-from .serializers import TodosSerializer, EmployeeInfoSerializer
+from .serializers import TodosSerializer, EmployeeInfoSerializer, UserSerializer
 
 # EmployeInfo Viewset 
 
@@ -19,3 +20,12 @@ class  TodosViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = TodosSerializer
+
+#User Viewset
+
+class  UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = UserSerializer
