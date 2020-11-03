@@ -9,6 +9,9 @@
             <div class="col-12 form-input">
                 <form action="{% url 'users:login' %}" method="POST">
                     {% csrf_token %}
+                    {% if message %}
+                        <div class="form-group">{{message}}</div>
+                    {% endif %}
                     {% if form.non_field_errors %}
                         <div class='form-errors'>{{ form.non_field_errors.error }}</li>
                     {% endif %}

@@ -42,7 +42,6 @@ def login_view(request):
             })
         else:
             return render(request, "users/login.html", {
-                "message" : "Invalid credentials.",
                  "form" : form
             })
 def logout_view(request):
