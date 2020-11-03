@@ -44,6 +44,7 @@ def login_view(request):
             return render(request, "users/login.html", {
                  "form" : form
             })
+    return render(request, "users/login.html")
 def logout_view(request):
     form = LoginForm()
     logout(request)
