@@ -20,6 +20,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("goodbye/", include("goodbye.urls")),
     path("todos/", include("todos.urls")),
-    path("", include("hello.api.urls")),
+    path("users/", include("users.urls")),
+    path("api/", include('todos.api.urls')),
 ]
 

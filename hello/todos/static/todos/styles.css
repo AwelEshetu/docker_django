@@ -35,3 +35,6 @@ caption {
     font-size: larger;
    
 }
+#logout{
+    align-items: flex-end;
+}
