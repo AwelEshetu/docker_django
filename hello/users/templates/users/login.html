@@ -12,8 +12,8 @@
                     {% if message %}
                         <div class="form-group">{{message}}</div>
                     {% endif %}
-                    {% if form.non_field_errors %}
-                        <div class='form-errors'>{{ form.non_field_errors.error }}</li>
+                    {% if form.errors %}
+                        <div class='form-group has-error'>{{ error_message }}</div>
                     {% endif %}
                     {{form}}
                     <input class="mb-3" type="submit"  value="Login">

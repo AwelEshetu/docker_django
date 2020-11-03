@@ -44,11 +44,12 @@ def login_view(request):
             return render(request, "users/login.html", {
                  "form" : form
             })
-    return render(request, "users/login.html")
+    return render(request, "users/login.html",{
+                 "form" : LoginForm
+            })
 def logout_view(request):
-    form = LoginForm()
     logout(request)
     return render(request, "users/login.html", {
         "message" : "Logged out.",
-        "form" : form
+        "form" : LoginForm
     })
